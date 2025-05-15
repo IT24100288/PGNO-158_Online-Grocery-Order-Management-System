@@ -1,11 +1,7 @@
+package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.utils;
+
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
-
-public class FileHandler package com.grocery.servlet.util;
-
-import java.io.*;
-        import java.util.ArrayList;
 import java.util.List;
 
 public class FileHandler {
@@ -50,5 +46,4 @@ public class FileHandler {
             writer.newLine();
         }
     }
-
 }
