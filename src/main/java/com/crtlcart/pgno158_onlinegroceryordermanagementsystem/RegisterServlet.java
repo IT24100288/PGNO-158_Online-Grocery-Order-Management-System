@@ -1,4 +1,4 @@
-package com.crtlcart.pgno158_onlinegroceryordermanagementsystem;
+package com.example.demo;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,10 +24,15 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        File file = new File(getServletContext().getRealPath("/data/users.txt"));
+        // Use WEB-INF path for users.txt
+        String usersFilePath = getServletContext().getRealPath("/WEB-INF/users.txt");
+        File file = new File(usersFilePath);
 
-        if (!file.exists()) {
+        // Ensure the WEB-INF directory exists and create the file if it doesn't
+        if (!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();
+        }
+        if (!file.exists()) {
             file.createNewFile();
         }
 
@@ -52,23 +57,32 @@ public class RegisterServlet extends HttpServlet {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             writer.write(username + ":" + password + ":" + email + "::\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Error saving user data to users.txt.");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
         }
 
-        // Save to correct path under /WEB-INF
+        // Save to user_data.txt under WEB-INF
         String userDataPath = getServletContext().getRealPath("/WEB-INF/user_data.txt");
         File userDataFile = new File(userDataPath);
 
-        // Make sure the parent directory exists
+        // Ensure the WEB-INF directory exists and create the file if it doesn't
         if (!userDataFile.getParentFile().exists()) {
             userDataFile.getParentFile().mkdirs();
         }
-
         if (!userDataFile.exists()) {
             userDataFile.createNewFile();
         }
 
         try (BufferedWriter userDataWriter = new BufferedWriter(new FileWriter(userDataFile, true))) {
             userDataWriter.write(username + "," + email + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Error saving user data to user_data.txt.");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
         }
 
         HttpSession session = request.getSession();
