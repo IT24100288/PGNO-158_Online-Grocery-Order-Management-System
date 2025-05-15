@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.crtlcart.pgno158_onlinegroceryordermanagementsystem;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
