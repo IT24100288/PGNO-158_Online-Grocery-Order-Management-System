@@ -1,0 +1,294 @@
+/* General Reset and Body Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    color: #ffffff;
+    padding-top: 60px; /* Prevent header overlap */
+}
+
+/* Container Styling */
+.container {
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid #333;
+    animation: fadeIn 0.5s ease-in-out;
+    margin: 20px;
+}
+
+/* Welcome Page Container */
+.welcome-container {
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 50px;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid #333;
+    position: relative;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+    margin: 20px;
+}
+
+/* Centering Utilities */
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Headings */
+h2 {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Form Inputs */
+input[type="text"],
+input[type="password"],
+input[type="file"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 12px 0;
+    background: #121212;
+    border: 2px solid #333333;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #ffffff !important;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="file"]::placeholder,
+input[type="email"]::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="file"]:focus,
+input[type="email"]:focus {
+    border-color: #f4b41a;
+    background: #1c1c1c;
+    transform: scale(1.02);
+}
+
+input[readonly] {
+    background: #2a2a2a;
+    color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #f4b41a;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #000000;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #ef233c;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(239, 35, 60, 0.4);
+}
+
+/* Profile Picture Container */
+.profile-pic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 12px 0;
+}
+
+/* Profile Picture Styling */
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f4b41a;
+    cursor: pointer;
+}
+
+/* Add Photo Button */
+button[name="addPhoto"] {
+    width: auto;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #f4b41a;
+    color: #000000;
+}
+
+button[name="addPhoto"]:hover {
+    background-color: #ef233c;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(244, 180, 26, 0.4);
+}
+
+/* Remove Photo Button */
+button[name="removePhoto"] {
+    width: auto;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #ef233c;
+    color: #ffffff;
+}
+
+button[name="removePhoto"]:hover {
+    background-color: #c00022;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(239, 35, 60, 0.4);
+}
+
+/* Labels */
+label {
+    color: #ffffff;
+    font-size: 16px;
+    margin: 10px 0 5px;
+    display: block;
+}
+
+/* Error Message */
+.error {
+    color: #ef233c;
+    font-size: 14px;
+    margin: 10px 0;
+    background: rgba(239, 35, 60, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Links */
+.link {
+    color: #f4b41a;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #ef233c;
+    text-decoration: underline;
+}
+
+/* Header Styling */
+.header {
+    width: 100%;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 24px;
+    font-weight: 600;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 998;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 🔴 Circle Profile Image Fixed at Top-Right (Above Header) */
+.icon-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #f4b41a;
+    object-fit: cover;
+    background-color: #000000;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    z-index: 9999;
+}
+
+
+.icon-button:hover {
+    transform: scale(1.1);
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container, .welcome-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .icon-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .profile-pic {
+        width: 80px;
+        height: 80px;
+    }
+
+    button[name="removePhoto"],
+    button[name="addPhoto"] {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .header {
+        font-size: 20px;
+        padding: 8px 0;
+    }
+}
