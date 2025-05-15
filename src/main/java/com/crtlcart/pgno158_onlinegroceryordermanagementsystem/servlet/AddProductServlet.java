@@ -1,7 +1,6 @@
-package org.example.ctrlcart.servlet;
+package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
 
-import org.example.ctrlcart.utils.ProductFileUtil;
-import org.example.ctrlcart.model.Product;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Product;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

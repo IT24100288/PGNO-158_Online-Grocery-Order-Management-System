@@ -1,4 +1,4 @@
-package org.example.ctrlcart.model;
+package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model;
 
 public class Product {
     private int id;
