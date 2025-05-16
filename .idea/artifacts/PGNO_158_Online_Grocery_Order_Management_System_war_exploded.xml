@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="PGNO-158_Online-Grocery-Order-Management-System:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/PGNO_158_Online_Grocery_Order_Management_System_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="PGNO-158_Online-Grocery-Order-Management-System" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="PGNO-158_Online-Grocery-Order-Management-System/web/Web" />
+    </root>
+  </artifact>
+</component>
