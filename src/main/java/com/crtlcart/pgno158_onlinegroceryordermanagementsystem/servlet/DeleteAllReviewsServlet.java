@@ -1,5 +1,6 @@
 package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
 
+
 import org.example.ctrlcart.model.Product;
 import org.example.ctrlcart.model.Review;
 import org.example.ctrlcart.utils.FileManager;
@@ -9,10 +10,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/deleteReview")
-public class DeleteReviewServlet extends HttpServlet {
+@WebServlet("/deleteAllReviews")
+public class DeleteAllReviewsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -24,30 +26,25 @@ public class DeleteReviewServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Get review ID
-            int id = Integer.parseInt(request.getParameter("id"));
+            // Create an empty list to replace all reviews
+            List<Review> emptyReviews = new ArrayList<>();
 
-            // Read current reviews
-            List<Review> reviews = FileManager.readReviews();
-
-            // Remove the review
-            reviews.removeIf(review -> review.getId() == id);
-
-            // Write updated reviews
-            FileManager.writeReviews(reviews);
+            // Write empty list to file
+            FileManager.writeReviews(emptyReviews);
 
             // Get products for the JSP
             List<Product> products = FileManager.readProducts();
 
             // Set attributes for JSP
-            request.setAttribute("message", "Review deleted successfully!");
-            request.setAttribute("reviews", reviews);
+            request.setAttribute("message", "All reviews have been cleared successfully.");
+            request.setAttribute("reviews", emptyReviews);
             request.setAttribute("products", products);
 
             // Forward to review submission page
             request.getRequestDispatcher("/reviewSubmission.jsp").forward(request, response);
-        } catch (NumberFormatException e) {
-            request.setAttribute("message", "Error: Invalid review ID.");
+
+        } catch (Exception e) {
+            request.setAttribute("message", "Error: Failed to clear reviews. " + e.getMessage());
             List<Product> products = FileManager.readProducts();
             List<Review> reviews = FileManager.readReviews();
             request.setAttribute("products", products);

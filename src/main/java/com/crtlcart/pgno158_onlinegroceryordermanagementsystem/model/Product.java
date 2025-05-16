@@ -1,5 +1,7 @@
 package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model;
 
+import java.io.Serializable;
+
 public class Product {
     private int id;
     private String name;

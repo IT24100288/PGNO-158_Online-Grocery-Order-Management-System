@@ -1,8 +1,8 @@
 package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
 
-import org.example.ctrlcart.model.Product;
-import org.example.ctrlcart.model.Review;
-import org.example.ctrlcart.utils.FileManager;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Product;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Review;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.utils.FileManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
