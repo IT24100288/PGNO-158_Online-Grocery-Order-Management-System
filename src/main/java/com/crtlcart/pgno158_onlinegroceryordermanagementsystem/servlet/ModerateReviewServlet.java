@@ -1,8 +1,8 @@
 package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
 
-import org.example.ctrlcart.model.Product;
-import org.example.ctrlcart.model.Review;
-import org.example.ctrlcart.utils.FileManager;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Product;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Review;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.utils.FileManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,45 +16,40 @@ public class ModerateReviewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
+    public void init() throws ServletException {
+        super.init();
+        FileManager.init(getServletContext());
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Check if user is admin
-        Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
-        if (isAdmin == null || !isAdmin) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Admin access required");
-            return;
-        }
+        try {
+            int reviewId = Integer.parseInt(request.getParameter("id"));
+            String action = request.getParameter("action");
+            
+            List<Review> reviews = FileManager.readReviews();
+            Review reviewToModerate = reviews.stream()
+                    .filter(r -> r.getId() == reviewId)
+                    .findFirst()
+                    .orElse(null);
 
-        // Get parameters
-        int id = Integer.parseInt(request.getParameter("id"));
-        String action = request.getParameter("action");
-
-        // Read the current list of reviews
-        List<Review> reviews = FileManager.readReviews();
-
-        // Find and update the review
-        for (Review review : reviews) {
-            if (review.getId() == id) {
+            if (reviewToModerate != null) {
                 if ("approve".equals(action)) {
-                    review.setStatus("APPROVED");
+                    reviewToModerate.setStatus("APPROVED");
                 } else if ("reject".equals(action)) {
-                    review.setStatus("REJECTED");
+                    reviewToModerate.setStatus("REJECTED");
                 }
-                break;
+                
+                FileManager.writeReviews(reviews);
+                request.getSession().setAttribute("message", "Review has been " + action + "d successfully");
+            } else {
+                request.getSession().setAttribute("message", "Review not found");
             }
+            
+            response.sendRedirect(request.getContextPath() + "/reviewPage");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error moderating review: " + e.getMessage());
         }
-
-        // Write the updated list back to the file
-        FileManager.writeReviews(reviews);
-
-        // Get products for the JSP
-        List<Product> products = FileManager.readProducts();
-
-        // Set attributes for JSP
-        request.setAttribute("message", "Review " + action + "d successfully!");
-        request.setAttribute("reviews", reviews);
-        request.setAttribute("products", products);
-
-        // Forward to review submission page
-        request.getRequestDispatcher("/reviewSubmission.jsp").forward(request, response);
     }
 }

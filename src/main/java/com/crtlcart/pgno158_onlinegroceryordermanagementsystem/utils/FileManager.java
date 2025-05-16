@@ -14,6 +14,21 @@ public class FileManager {
 
     public static void init(ServletContext context) {
         servletContext = context;
+        // Create files if they don't exist
+        createFileIfNotExists(PRODUCTS_FILE);
+        createFileIfNotExists(REVIEWS_FILE);
+    }
+
+    private static void createFileIfNotExists(String filename) {
+        File file = new File(getFilePath(filename));
+        if (!file.exists()) {
+            try {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private static String getFilePath(String filename) {
@@ -22,32 +37,53 @@ public class FileManager {
 
     public static List<Product> readProducts() {
         List<Product> products = new ArrayList<>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(getFilePath(PRODUCTS_FILE)))) {
-            products = (List<Product>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(getFilePath(PRODUCTS_FILE)))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 4) {
+                    int id = Integer.parseInt(parts[0]);
+                    String name = parts[1];
+                    double price = Double.parseDouble(parts[2]);
+                    int stock = Integer.parseInt(parts[3]);
+                    products.add(new Product(id, name, price, stock));
+                }
+            }
+        } catch (IOException e) {
             // If file doesn't exist or is empty, return empty list
+            e.printStackTrace();
         }
         return products;
     }
 
     public static void writeProducts(List<Product> products) throws IOException {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(getFilePath(PRODUCTS_FILE)))) {
-            oos.writeObject(products);
+        try (PrintWriter writer = new PrintWriter(new FileWriter(getFilePath(PRODUCTS_FILE)))) {
+            for (Product product : products) {
+                writer.println(String.format("%d,%s,%.2f,%d",
+                    product.getId(),
+                    product.getName(),
+                    product.getPrice(),
+                    product.getStock()));
+            }
         }
     }
 
     public static List<Review> readReviews() {
         List<Review> reviews = new ArrayList<>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(getFilePath(REVIEWS_FILE)))) {
-            reviews = (List<Review>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            // If file doesn't exist or is empty, return empty list
+        File file = new File(getFilePath(REVIEWS_FILE));
+        if (file.exists() && file.length() > 0) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                reviews = (List<Review>) ois.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         return reviews;
     }
 
     public static void writeReviews(List<Review> reviews) throws IOException {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(getFilePath(REVIEWS_FILE)))) {
+        File file = new File(getFilePath(REVIEWS_FILE));
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
             oos.writeObject(reviews);
         }
     }

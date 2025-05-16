@@ -1,16 +1,17 @@
 package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
 
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Review;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.utils.FileManager;
 
-import org.example.ctrlcart.model.Product;
-import org.example.ctrlcart.model.Review;
-import org.example.ctrlcart.utils.FileManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.List;
+
 
 @WebServlet("/editReview")
 public class EditReviewServlet extends HttpServlet {
@@ -23,67 +24,81 @@ public class EditReviewServlet extends HttpServlet {
     }
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            String reviewIdStr = request.getParameter("id");
+            if (reviewIdStr == null || reviewIdStr.trim().isEmpty()) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Review ID is required");
+                return;
+            }
+
+            int reviewId = Integer.parseInt(reviewIdStr);
+            List<Review> reviews = FileManager.readReviews();
+            Review reviewToEdit = reviews.stream()
+                    .filter(r -> r.getId() == reviewId)
+                    .findFirst()
+                    .orElse(null);
+
+            if (reviewToEdit != null) {
+                request.setAttribute("review", reviewToEdit);
+                request.getRequestDispatcher("/WEB-INF/JSP/editReview.jsp").forward(request, response);
+            } else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Review not found");
+            }
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid review ID format");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error loading review: " + e.getMessage());
+        }
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Get parameters
-            int id = Integer.parseInt(request.getParameter("id"));
+            String reviewIdStr = request.getParameter("id");
             String productName = request.getParameter("productName");
-            boolean isNewProduct = Boolean.parseBoolean(request.getParameter("isNewProduct"));
-            String userName = request.getParameter("userName");
-            String comment = request.getParameter("comment");
-            double rating = Double.parseDouble(request.getParameter("rating"));
+            String reviewText = request.getParameter("reviewText");
+            String ratingStr = request.getParameter("rating");
+            String status = request.getParameter("status");
 
             // Validate input
-            if (rating < 0 || rating > 5) {
-                throw new NumberFormatException("Invalid rating");
+            if (reviewIdStr == null || productName == null || reviewText == null || ratingStr == null || status == null) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "All fields are required");
+                return;
             }
 
-            // Get or create product ID
-            List<Product> products = FileManager.readProducts();
-            int productId;
+            int reviewId = Integer.parseInt(reviewIdStr);
+            int rating = Integer.parseInt(ratingStr);
 
-            if (isNewProduct) {
-                // Create new product
-                int newProductId = products.isEmpty() ? 1 : products.get(products.size() - 1).getId() + 1;
-                Product newProduct = new Product(newProductId, productName, 0.0, 0);
-                products.add(newProduct);
-                FileManager.writeProducts(products);
-                productId = newProductId;
-            } else {
-                productId = Integer.parseInt(request.getParameter("productId"));
+            if (rating < 1 || rating > 5) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Rating must be between 1 and 5");
+                return;
             }
 
-            // Read current reviews
             List<Review> reviews = FileManager.readReviews();
+            Review reviewToEdit = reviews.stream()
+                    .filter(r -> r.getId() == reviewId)
+                    .findFirst()
+                    .orElse(null);
 
-            // Find and update the review
-            boolean found = false;
-            for (Review review : reviews) {
-                if (review.getId() == id) {
-                    // Update review details
-                    review.setProductId(productId);
-                    review.setUserName(userName);
-                    review.setComment(comment);
-                    review.setRating(rating);
-                    review.setStatus("PENDING"); // Set status to pending after edit
-                    found = true;
-                    break;
-                }
-            }
+            if (reviewToEdit != null) {
+                reviewToEdit.setProductName(productName.trim());
+                reviewToEdit.setReviewText(reviewText.trim());
+                reviewToEdit.setRating(rating);
+                reviewToEdit.setStatus(status);
 
-            if (!found) {
-                request.getSession().setAttribute("message", "Error: Review not found.");
-            } else {
-                // Write updated reviews
                 FileManager.writeReviews(reviews);
-                request.getSession().setAttribute("message", "Review updated successfully! Awaiting approval.");
+                request.getSession().setAttribute("message", "Review updated successfully");
+                response.sendRedirect(request.getContextPath() + "/index.jsp");
+            } else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Review not found");
             }
-
-            // Redirect to review page
-            response.sendRedirect("reviewPage");
         } catch (NumberFormatException e) {
-            request.getSession().setAttribute("message", "Error: Invalid input. Please check your rating.");
-            response.sendRedirect("reviewPage");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid number format");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error updating review: " + e.getMessage());
         }
     }
 }

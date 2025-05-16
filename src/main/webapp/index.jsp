@@ -1,139 +1,179 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Review" %>
+<%@ page import="com.crtlcart.pgno158_onlinegroceryordermanagementsystem.utils.FileManager" %>
+<%@ page import="java.util.List" %>
 <html>
 <head>
-    <title>Welcome - Ctrl+Cart</title>
+    <title>Feedback and Review Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background: #f4f6fb;
         }
-        header {
-            background: linear-gradient(45deg, #6B48FF, #8A6CFF);
-            color: white;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(107, 72, 255, 0.2);
+        .main-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(80, 72, 229, 0.08);
+            padding: 32px 24px;
+            margin: 40px auto;
+            max-width: 700px;
         }
-        nav {
-            background: linear-gradient(45deg, #8A6CFF, #6B48FF);
-            padding: 1rem 0;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(107, 72, 255, 0.2);
+        .main-header {
+            background: #7b5cff;
+            color: #fff;
+            border-radius: 16px 16px 0 0;
+            padding: 24px 0 16px 0;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0;
         }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-right: 1.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            background: rgba(255,255,255,0.1);
-        }
-        nav a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-        .card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(107, 72, 255, 0.1);
-            margin-bottom: 1.5rem;
+        .alert-purple {
+            background: #7b5cff;
+            color: #fff;
+            border-radius: 8px;
             border: none;
-            transition: transform 0.3s ease;
+            margin-bottom: 24px;
         }
-        .card:hover {
-            transform: translateY(-5px);
+        .form-label {
+            font-weight: 500;
         }
-        .card h2 {
-            color: #6B48FF;
-            padding: 1.5rem;
-            margin: 0;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        .card h3 {
-            color: #6B48FF;
-            margin-bottom: 1rem;
+        .form-control, textarea {
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
         }
         .btn-primary {
-            background: linear-gradient(45deg, #6B48FF, #8A6CFF);
+            background: #7b5cff;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
+            border-radius: 8px;
+            font-weight: 500;
         }
-        .btn-primary:hover {
-            background: linear-gradient(45deg, #8A6CFF, #6B48FF);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(107, 72, 255, 0.3);
+        .btn-primary:hover, .btn-danger:hover {
+            opacity: 0.9;
         }
-        footer {
-            background: linear-gradient(45deg, #6B48FF, #8A6CFF);
-            color: white;
-            padding: 1.5rem 0;
-            margin-top: auto;
-            box-shadow: 0 -4px 15px rgba(107, 72, 255, 0.2);
+        .table-purple th {
+            background: #7b5cff;
+            color: #fff;
+            border: none;
         }
-        .feature-icon {
-            font-size: 2rem;
-            color: #6B48FF;
-            margin-bottom: 1rem;
+        .table-purple td {
+            background: #f8f6ff;
+            border: none;
+            vertical-align: middle;
+        }
+        .star {
+            color: #ffb400;
+            font-size: 1.1em;
+        }
+        .action-btn {
+            border-radius: 6px;
+            font-size: 0.95em;
+            margin-right: 4px;
+        }
+        .btn-danger {
+            background: #ff5c5c;
+            border: none;
+        }
+        .clear-btn {
+            background: #ff5c5c;
+            color: #fff;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            float: right;
+        }
+        @media (max-width: 800px) {
+            .main-card { padding: 16px 4px; }
+            .main-header { font-size: 1.3rem; }
         }
     </style>
 </head>
 <body>
-<header>
     <div class="container">
-        <h1 class="display-4">Welcome to Ctrl+Cart</h1>
-        <p class="lead">Your one-stop shop for all your grocery needs</p>
-    </div>
-</header>
-
-<nav>
-    <div class="container">
-        <a href="listProducts"><i class="fas fa-shopping-basket"></i> View Products</a>
-        <a href="reviewPage"><i class="fas fa-star"></i> Reviews</a>
-    </div>
-</nav>
-
-<div class="container">
-    <div class="card">
-        <h2>Quick Links</h2>
-        <div class="row p-4">
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-shopping-basket feature-icon"></i>
-                        <h3>Products</h3>
-                        <p class="mb-4">Browse our extensive collection of products</p>
-                        <a href="listProducts" class="btn btn-primary">View Products</a>
-                    </div>
+        <div class="main-card mt-5">
+            <div class="main-header">Feedback and Review Management</div>
+            <% String message = (String) session.getAttribute("message"); if (message != null) { %>
+                <div class="alert alert-purple mt-4"> <%= message %> </div>
+                <% session.removeAttribute("message"); } %>
+            <form id="reviewForm" action="submitReview" method="post" class="mb-4">
+                <div class="mb-3">
+                    <label for="productName" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="productName" name="productName" required placeholder="Enter product name">
                 </div>
+                <div class="mb-3">
+                    <label for="userName" class="form-label">Your Name</label>
+                    <input type="text" class="form-control" id="userName" name="userName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="reviewText" class="form-label">Your Review</label>
+                    <textarea class="form-control" id="reviewText" name="reviewText" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="rating" class="form-label">Rating (0-5)</label>
+                    <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Submit Review</button>
+            </form>
+        </div>
+        <div class="main-card mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="mb-0">All Reviews</h4>
+                <form action="deleteAllReviews" method="post" style="display:inline;">
+                    <button type="submit" class="clear-btn" onclick="return confirm('Are you sure you want to delete all reviews?')">
+                        <i class="fas fa-trash"></i> Clear All Reviews
+                    </button>
+                </form>
             </div>
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-star feature-icon"></i>
-                        <h3>Reviews</h3>
-                        <p class="mb-4">Share your experience with our products</p>
-                        <a href="reviewPage" class="btn btn-primary">View Reviews</a>
-                    </div>
-                </div>
+            <div class="table-responsive">
+                <table class="table table-purple align-middle text-center">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>Product Name</th>
+                            <th>User</th>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                        List<Review> reviews = FileManager.readReviews();
+                        int i = 1;
+                        for(Review review : reviews) {
+                            String[] dateTime = review.getSubmissionDate().split(" ");
+                            String date = dateTime.length > 0 ? dateTime[0] : "";
+                            String time = dateTime.length > 1 ? dateTime[1] : "";
+                        %>
+                        <tr>
+                            <td><%= i++ %></td>
+                            <td><%= review.getProductName() %></td>
+                            <td><%= review.getUserName() %></td>
+                            <td>
+                                <% for(int s = 0; s < review.getRating(); s++) { %>
+                                    <span class="star">&#9733;</span>
+                                <% } %>
+                                <% for(int s = review.getRating(); s < 5; s++) { %>
+                                    <span class="star text-secondary">&#9733;</span>
+                                <% } %>
+                                <span class="ms-1">(<%= review.getRating() %>.0)</span>
+                            </td>
+                            <td><%= review.getReviewText() %></td>
+                            <td><%= date %></td>
+                            <td><%= time %></td>
+                            <td>
+                                <a href="editReview?id=<%= review.getId() %>" class="btn btn-primary action-btn"><i class="fas fa-edit"></i> Edit</a>
+                                <a href="deleteReview?id=<%= review.getId() %>" class="btn btn-danger action-btn"><i class="fas fa-trash"></i> Delete</a>
+                            </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</div>
-
-<footer>
-    <div class="container text-center">
-        <p class="mb-0">&copy; 2024 Ctrl+Cart. All rights reserved.</p>
-    </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,7 +1,8 @@
 package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
-import org.example.ctrlcart.model.Product;
-import org.example.ctrlcart.model.Review;
-import org.example.ctrlcart.utils.FileManager;
+
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Product;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Review;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.utils.FileManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,37 +22,26 @@ public class DeleteReviewServlet extends HttpServlet {
     }
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        handleDelete(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        handleDelete(request, response);
+    }
+
+    private void handleDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-            // Get review ID
-            int id = Integer.parseInt(request.getParameter("id"));
-
-            // Read current reviews
+            int reviewId = Integer.parseInt(request.getParameter("id"));
             List<Review> reviews = FileManager.readReviews();
-
-            // Remove the review
-            reviews.removeIf(review -> review.getId() == id);
-
-            // Write updated reviews
+            reviews.removeIf(review -> review.getId() == reviewId);
             FileManager.writeReviews(reviews);
-
-            // Get products for the JSP
-            List<Product> products = FileManager.readProducts();
-
-            // Set attributes for JSP
-            request.setAttribute("message", "Review deleted successfully!");
-            request.setAttribute("reviews", reviews);
-            request.setAttribute("products", products);
-
-            // Forward to review submission page
-            request.getRequestDispatcher("/reviewSubmission.jsp").forward(request, response);
-        } catch (NumberFormatException e) {
-            request.setAttribute("message", "Error: Invalid review ID.");
-            List<Product> products = FileManager.readProducts();
-            List<Review> reviews = FileManager.readReviews();
-            request.setAttribute("products", products);
-            request.setAttribute("reviews", reviews);
-            request.getRequestDispatcher("/reviewSubmission.jsp").forward(request, response);
+            request.getSession().setAttribute("message", "Review deleted successfully");
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error deleting review: " + e.getMessage());
         }
     }
 }

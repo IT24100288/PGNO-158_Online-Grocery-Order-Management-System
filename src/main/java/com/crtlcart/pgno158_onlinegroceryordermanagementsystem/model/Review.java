@@ -1,30 +1,29 @@
 package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Review {
+public class Review implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int id;
     private int productId;
-    private int userId;
+    private String productName;
     private String userName;
-    private String comment;
-    private double rating;
+    private String reviewText;
+    private int rating;
     private String status;
     private String submissionDate;
-    private String submissionTime;
 
-    public Review(int id, int productId, int userId, String userName, String comment, double rating, String status) {
+    public Review(int id, int productId, String productName, String userName, String reviewText, int rating) {
         this.id = id;
         this.productId = productId;
-        this.userId = userId;
+        this.productName = productName;
         this.userName = userName;
-        this.comment = comment;
+        this.reviewText = reviewText;
         this.rating = rating;
-        this.status = status;
-        LocalDateTime now = LocalDateTime.now();
-        this.submissionDate = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        this.submissionTime = now.format(DateTimeFormatter.ofPattern("HH:mm"));
+        this.status = "PENDING";
+        this.submissionDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     // Getters and setters
@@ -32,18 +31,16 @@ public class Review {
     public void setId(int id) { this.id = id; }
     public int getProductId() { return productId; }
     public void setProductId(int productId) { this.productId = productId; }
-    public int getUserId() { return userId; }
-    public void setUserId(int userId) { this.userId = userId; }
+    public String getProductName() { return productName; }
+    public void setProductName(String productName) { this.productName = productName; }
     public String getUserName() { return userName; }
     public void setUserName(String userName) { this.userName = userName; }
-    public String getComment() { return comment; }
-    public void setComment(String comment) { this.comment = comment; }
-    public double getRating() { return rating; }
-    public void setRating(double rating) { this.rating = rating; }
+    public String getReviewText() { return reviewText; }
+    public void setReviewText(String reviewText) { this.reviewText = reviewText; }
+    public int getRating() { return rating; }
+    public void setRating(int rating) { this.rating = rating; }
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
     public String getSubmissionDate() { return submissionDate; }
     public void setSubmissionDate(String submissionDate) { this.submissionDate = submissionDate; }
-    public String getSubmissionTime() { return submissionTime; }
-    public void setSubmissionTime(String submissionTime) { this.submissionTime = submissionTime; }
 }

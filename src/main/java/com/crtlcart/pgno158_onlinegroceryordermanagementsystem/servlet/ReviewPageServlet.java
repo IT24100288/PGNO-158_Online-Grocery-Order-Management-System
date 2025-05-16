@@ -1,8 +1,8 @@
 package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
 
-import org.example.ctrlcart.model.Product;
-import org.example.ctrlcart.model.Review;
-import org.example.ctrlcart.utils.FileManager;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Product;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Review;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.utils.FileManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,22 +23,27 @@ public class ReviewPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Load products and reviews
-        List<Product> products = FileManager.readProducts();
-        List<Review> reviews = FileManager.readReviews();
+        try {
+            // Load products and reviews
+            List<Product> products = FileManager.readProducts();
+            List<Review> reviews = FileManager.readReviews();
 
-        // Get message from session if exists
-        String message = (String) request.getSession().getAttribute("message");
-        if (message != null) {
-            request.setAttribute("message", message);
-            request.getSession().removeAttribute("message"); // Clear the message
+            // Get message from session if exists
+            String message = (String) request.getSession().getAttribute("message");
+            if (message != null) {
+                request.setAttribute("message", message);
+                request.getSession().removeAttribute("message"); // Clear the message
+            }
+
+            // Set attributes for JSP
+            request.setAttribute("products", products);
+            request.setAttribute("reviews", reviews);
+
+            // Forward to the JSP page
+            request.getRequestDispatcher("/WEB-INF/JSP/reviewSubmission.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error loading review page: " + e.getMessage());
         }
-
-        // Set attributes for JSP
-        request.setAttribute("products", products);
-        request.setAttribute("reviews", reviews);
-
-        // Forward to review submission page
-        request.getRequestDispatcher("/reviewSubmission.jsp").forward(request, response);
     }
 }
