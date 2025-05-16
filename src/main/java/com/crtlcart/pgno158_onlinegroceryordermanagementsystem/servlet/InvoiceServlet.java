@@ -1,7 +1,5 @@
 package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
 
-package com.yourapp.servlet;
-
 import com.yourapp.model.Invoice;
 
 import javax.servlet.ServletException;
