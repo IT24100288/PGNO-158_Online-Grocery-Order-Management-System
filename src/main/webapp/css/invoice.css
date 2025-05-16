@@ -1,0 +1,39 @@
+body {
+    background-color: #1f1d2b;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.invoice-container {
+    background: #252836;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #3f3f3f;
+    text-align: center;
+}
+
+th {
+    background-color: #2d303e;
+}
+
+button {
+    margin-top: 20px;
+    background-color: #ff7a5c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}

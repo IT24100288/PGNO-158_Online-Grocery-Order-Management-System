@@ -1,0 +1,36 @@
+.tab-btn {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #2D303E;
+    text-align: center;
+    color: white;
+    border: 1px solid transparent;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.tab-btn:hover {
+    background-color: #3A3D4D;
+}
+
+.active-tab {
+    background-color: #EA7C69;
+    color: white;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #2D303E;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+}
+
+body {
+    background-color: #ffffff;
+    color: #0a0303;
+    font-family: sans-serif;
+}
