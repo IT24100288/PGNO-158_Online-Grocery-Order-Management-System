@@ -5,36 +5,83 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background: #f8f9ff;
-            padding: 20px;
+            background: linear-gradient(135deg, #2176ae 0%, #8f6aff 100%);
+            min-height: 100vh;
+            padding: 30px;
         }
         .form-container {
             max-width: 800px;
             margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(138, 43, 226, 0.06);
+            background: rgba(255,255,255,0.97);
+            padding: 38px 36px 32px 36px;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(33, 118, 174, 0.10), 0 2px 8px rgba(143, 106, 255, 0.08);
         }
         .form-label {
-            color: #6B48FF;
-            font-weight: 500;
+            color: #2176ae;
+            font-weight: 600;
+            font-size: 1.05rem;
+            letter-spacing: 0.2px;
         }
-        .form-control:focus {
-            border-color: #6B48FF;
-            box-shadow: 0 0 0 0.2rem rgba(107, 72, 255, 0.25);
+        .form-control, textarea, select {
+            border-radius: 12px;
+            border: 2px solid #e3eaf2;
+            padding: 13px 14px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-control:focus, textarea:focus, select:focus {
+            border-color: #8f6aff;
+            box-shadow: 0 0 0 0.18rem rgba(143, 106, 255, 0.13);
         }
         .btn-primary {
-            background: linear-gradient(90deg, #8f6aff 0%, #6a82fb 100%);
+            background: linear-gradient(90deg, #2176ae 0%, #8f6aff 100%);
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 16px rgba(143, 106, 255, 0.10);
+            transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #8f6aff 0%, #2176ae 100%);
+            box-shadow: 0 8px 24px rgba(33, 118, 174, 0.13);
+            transform: translateY(-2px) scale(1.03);
         }
         .btn-secondary {
-            background: #6c757d;
+            background: linear-gradient(90deg, #bdbdbd 0%, #757575 100%);
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #fff;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(189, 189, 189, 0.10);
+            transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+        }
+        .btn-secondary:hover {
+            background: linear-gradient(90deg, #757575 0%, #bdbdbd 100%);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(33, 118, 174, 0.10);
+            transform: translateY(-2px) scale(1.03);
+        }
+        .alert-success {
+            background: linear-gradient(90deg, #e0ffe7 0%, #b2f7ef 100%);
+            color: #2176ae;
+            border: none;
+            border-radius: 10px;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(33, 118, 174, 0.07);
+        }
+        h2 {
+            color: #6a82fb;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 28px;
+            text-shadow: 0 2px 8px rgba(143, 106, 255, 0.08);
         }
     </style>
 </head>
