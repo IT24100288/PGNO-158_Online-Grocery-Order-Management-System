@@ -20,7 +20,7 @@ public class PaymentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ServletException {
 
         // 1. Read form data
         String paymentMethod = request.getParameter("paymentMethod"); // set via JavaScript if needed

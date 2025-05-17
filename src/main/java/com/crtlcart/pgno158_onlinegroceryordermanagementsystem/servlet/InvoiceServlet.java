@@ -1,10 +1,13 @@
 package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
 
-import com.yourapp.model.Invoice;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Invoice;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -48,7 +51,7 @@ public class InvoiceServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ServletException {
         Stack<Invoice> invoices = loadInvoices();
         req.setAttribute("invoices", invoices);
         req.getRequestDispatcher("/invoice.jsp").forward(req, resp);
