@@ -29,11 +29,15 @@ public class ListProductsServlet extends HttpServlet {
         System.out.println("ListProductsServlet: Forwarding to /WEB-INF/listProducts.jsp");
         List<Product> products = ProductFileUtil.readProducts();
 
-        // Get sorting parameter
+        // Get sorting parameters
         String sortBy = request.getParameter("sortBy");
-        if (sortBy != null && (sortBy.equalsIgnoreCase("category") || sortBy.equalsIgnoreCase("price"))) {
-            products = MergeSortUtil.sort(products, sortBy);
-            System.out.println("Sorted products by " + sortBy + ": " + products);
+        String sortOrder = request.getParameter("sortOrder");
+
+        if (sortBy != null && sortBy.equalsIgnoreCase("price")) {
+            // Default to ascending if sortOrder is not specified or invalid
+            sortOrder = (sortOrder == null || !sortOrder.equalsIgnoreCase("desc")) ? "asc" : "desc";
+            products = MergeSortUtil.sort(products, sortOrder);
+            System.out.println("Sorted products by price (" + sortOrder + "): " + products);
         }
 
         request.setAttribute("products", products);

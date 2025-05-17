@@ -2,53 +2,55 @@ package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.utils;
 
 import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Product;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MergeSortUtil {
 
-    public static List<Product> sort(List<Product> products, String sortBy) {
+    // Main method to sort products by price (asc for low to high, desc for high to low)
+    public static java.util.List<Product> sort(java.util.List<Product> products, String sortOrder) {
         if (products == null || products.size() <= 1) {
-            return products;
+            return products; // Return if list is empty or has one item
         }
-        List<Product> productList = new ArrayList<>(products);
-        mergeSort(productList, 0, productList.size() - 1, sortBy);
+        java.util.List<Product> productList = new java.util.ArrayList<>(products);
+        mergeSort(productList, 0, productList.size() - 1, sortOrder); // Sort the entire list
         return productList;
     }
 
-    private static void mergeSort(List<Product> products, int left, int right, String sortBy) {
+    // Recursive method to divide the list into smaller parts
+    private static void mergeSort(java.util.List<Product> products, int left, int right, String sortOrder) {
         if (left < right) {
-            int mid = left + (right - left) / 2;
-            mergeSort(products, left, mid, sortBy);
-            mergeSort(products, mid + 1, right, sortBy);
-            merge(products, left, mid, right, sortBy);
+            int mid = (left + right) / 2; // Find the middle point to divide
+            mergeSort(products, left, mid, sortOrder); // Sort left half
+            mergeSort(products, mid + 1, right, sortOrder); // Sort right half
+            merge(products, left, mid, right, sortOrder); // Merge the sorted halves
         }
     }
 
-    private static void merge(List<Product> products, int left, int mid, int right, String sortBy) {
-        int n1 = mid - left + 1;
-        int n2 = right - mid;
+    // Method to merge two sorted sublists
+    private static void merge(java.util.List<Product> products, int left, int mid, int right, String sortOrder) {
+        // Create temporary lists for left and right halves
+        java.util.List<Product> leftList = new java.util.ArrayList<>();
+        java.util.List<Product> rightList = new java.util.ArrayList<>();
 
-        List<Product> leftList = new ArrayList<>(n1);
-        List<Product> rightList = new ArrayList<>(n2);
-
-        for (int i = 0; i < n1; i++) {
-            leftList.add(products.get(left + i));
+        // Copy data to temporary lists
+        for (int i = left; i <= mid; i++) {
+            leftList.add(products.get(i));
         }
-        for (int j = 0; j < n2; j++) {
-            rightList.add(products.get(mid + 1 + j));
+        for (int i = mid + 1; i <= right; i++) {
+            rightList.add(products.get(i));
         }
 
-        int i = 0, j = 0, k = left;
-        while (i < n1 && j < n2) {
-            Product leftProduct = leftList.get(i);
-            Product rightProduct = rightList.get(j);
+        // Merge the temporary lists back into the original list
+        int i = 0; // Index for leftList
+        int j = 0; // Index for rightList
+        int k = left; // Index for merged result
 
+        while (i < leftList.size() && j < rightList.size()) {
             boolean shouldSwap;
-            if ("category".equalsIgnoreCase(sortBy)) {
-                shouldSwap = leftProduct.getCategory().compareToIgnoreCase(rightProduct.getCategory()) <= 0;
+            if ("desc".equalsIgnoreCase(sortOrder)) {
+                // High to low (descending)
+                shouldSwap = leftList.get(i).getPrice() >= rightList.get(j).getPrice();
             } else {
-                shouldSwap = leftProduct.getPrice() <= rightProduct.getPrice();
+                // Low to high (ascending, default)
+                shouldSwap = leftList.get(i).getPrice() <= rightList.get(j).getPrice();
             }
 
             if (shouldSwap) {
@@ -61,13 +63,15 @@ public class MergeSortUtil {
             k++;
         }
 
-        while (i < n1) {
+        // Add remaining elements from leftList, if any
+        while (i < leftList.size()) {
             products.set(k, leftList.get(i));
             i++;
             k++;
         }
 
-        while (j < n2) {
+        // Add remaining elements from rightList, if any
+        while (j < rightList.size()) {
             products.set(k, rightList.get(j));
             j++;
             k++;

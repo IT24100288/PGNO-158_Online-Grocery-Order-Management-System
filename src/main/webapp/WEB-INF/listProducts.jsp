@@ -10,12 +10,15 @@
 <body>
 <div class="container mt-5">
   <h2>Product List</h2>
+  <a href="addProduct.jsp" class="btn btn-primary mb-3">Add New Product</a>
   <form action="listProducts" method="get" class="mb-3">
     <label for="sortBy" class="form-label">Sort By:</label>
     <select name="sortBy" id="sortBy" class="form-select d-inline w-auto">
-      <option value="category">Category</option>
-      <option value="price">Price</option>
+      <option value="none">None</option>
+      <option value="price">Price (Low to High)</option>
+      <option value="price" data-order="desc">Price (High to Low)</option>
     </select>
+    <input type="hidden" name="sortOrder" id="sortOrder" value="asc">
     <button type="submit" class="btn btn-primary">Sort</button>
   </form>
   <table class="table table-striped">
@@ -43,22 +46,14 @@
     </c:forEach>
     </tbody>
   </table>
-  <h3>Add New Product</h3>
-  <form action="addProduct" method="post">
-    <div class="mb-3">
-      <label for="name" class="form-label">Product Name:</label>
-      <input type="text" class="form-control" id="name" name="name" required>
-    </div>
-    <div class="mb-3">
-      <label for="price" class="form-label">Price:</label>
-      <input type="number" class="form-control" id="price" name="price" step="0.01" required>
-    </div>
-    <div class="mb-3">
-      <label for="category" class="form-label">Category:</label>
-      <input type="text" class="form-control" id="category" name="category" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Add Product</button>
-  </form>
 </div>
+<script>
+  // JavaScript to set sortOrder based on selected option
+  document.getElementById("sortBy").addEventListener("change", function() {
+    var selectedOption = this.options[this.selectedIndex];
+    var sortOrder = selectedOption.getAttribute("data-order") || "asc";
+    document.getElementById("sortOrder").value = sortOrder;
+  });
+</script>
 </body>
 </html>

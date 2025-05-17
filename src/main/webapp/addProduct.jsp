@@ -24,6 +24,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Add Product</button>
     <a href="listProducts" class="btn btn-secondary">Cancel</a>
+    <a href="listProducts" class="btn btn-info">View Products</a>
   </form>
 </div>
 </body>
