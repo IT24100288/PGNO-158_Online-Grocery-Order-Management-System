@@ -3,10 +3,13 @@ package com.crtlcart.pgno158_onlinegroceryordermanagementsystem;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("register.jsp").forward(request, response);
@@ -18,31 +21,27 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
-        if (username == null || password == null || email == null || username.trim().isEmpty() || password.trim().isEmpty() || email.trim().isEmpty()) {
+        if (isEmpty(username) || isEmpty(password) || isEmpty(email)) {
             request.setAttribute("error", "All fields are required.");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
         }
 
-        // Use WEB-INF path for users.txt
         String usersFilePath = getServletContext().getRealPath("/WEB-INF/users.txt");
-        File file = new File(usersFilePath);
+        File usersFile = new File(usersFilePath);
+        usersFile.getParentFile().mkdirs(); // Ensure parent dir exists
 
-        // Ensure the WEB-INF directory exists and create the file if it doesn't
-        if (!file.getParentFile().exists()) {
-            file.getParentFile().mkdirs();
-        }
-        if (!file.exists()) {
-            file.createNewFile();
+        if (!usersFile.exists()) {
+            usersFile.createNewFile();
         }
 
         boolean userExists = false;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(usersFile), StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(":");
-                if (parts.length > 0 && parts[0].equals(username)) {
+                if (parts.length > 0 && parts[0].equalsIgnoreCase(username)) {
                     userExists = true;
                     break;
                 }
@@ -55,32 +54,27 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(usersFile, true), StandardCharsets.UTF_8))) {
             writer.write(username + ":" + password + ":" + email + "::\n");
         } catch (IOException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Error saving user data to users.txt.");
+            request.setAttribute("error", "Error saving user data.");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
         }
 
-        // Save to user_data.txt under WEB-INF
+        // Save additional data to user_data.txt
         String userDataPath = getServletContext().getRealPath("/WEB-INF/user_data.txt");
         File userDataFile = new File(userDataPath);
+        userDataFile.getParentFile().mkdirs();
 
-        // Ensure the WEB-INF directory exists and create the file if it doesn't
-        if (!userDataFile.getParentFile().exists()) {
-            userDataFile.getParentFile().mkdirs();
-        }
         if (!userDataFile.exists()) {
             userDataFile.createNewFile();
         }
 
-        try (BufferedWriter userDataWriter = new BufferedWriter(new FileWriter(userDataFile, true))) {
-            userDataWriter.write(username + "," + email + "\n");
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(userDataFile, true), StandardCharsets.UTF_8))) {
+            writer.write(username + "," + email + "\n");
         } catch (IOException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Error saving user data to user_data.txt.");
+            request.setAttribute("error", "Error saving user profile info.");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
         }
@@ -90,5 +84,9 @@ public class RegisterServlet extends HttpServlet {
         session.setAttribute("email", email);
 
         response.sendRedirect("welcome.jsp");
+    }
+
+    private boolean isEmpty(String s) {
+        return s == null || s.trim().isEmpty();
     }
 }

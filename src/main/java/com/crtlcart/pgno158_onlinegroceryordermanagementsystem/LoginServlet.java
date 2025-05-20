@@ -36,17 +36,20 @@ public class LoginServlet extends HttpServlet {
                         HttpSession session = request.getSession();
                         session.setAttribute("username", username);
                         session.setAttribute("email", parts.length > 2 ? parts[2] : "");
-                        session.setAttribute("mobile", parts.length > 2 ? parts[2] : ""); // Placeholder, no mobile
+                        session.setAttribute("mobile", parts.length > 3 ? parts[3] : "");
                         session.setAttribute("address", parts.length > 4 ? parts[4] : "");
                         response.sendRedirect("welcome.jsp");
                         return;
                     }
                 }
             } catch (IOException e) {
+                e.printStackTrace(); // Better logging
                 request.setAttribute("error", "Error reading user data.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
                 return;
             }
+        } else {
+            System.out.println("User data file not found at: " + file.getAbsolutePath());
         }
 
         request.setAttribute("error", "No account found with the given username and password.");
