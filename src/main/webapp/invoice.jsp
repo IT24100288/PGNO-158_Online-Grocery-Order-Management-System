@@ -1,4 +1,4 @@
-<%@ page import="com.yourapp.model.Invoice" %>
+<%@ page import="com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Invoice" %>
 <%@ page import="java.util.Stack" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -22,9 +22,9 @@
         </thead>
         <tbody>
         <%
-            Stack<Invoice> invoices = (Stack<com.yourapp.model.Invoice>) request.getAttribute("invoices");
+            Stack<Invoice> invoices = (Stack<com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Invoice>) request.getAttribute("invoices");
             if (invoices != null) {
-                for (com.yourapp.model.Invoice inv : invoices) {
+                for (com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Invoice inv : invoices) {
         %>
         <tr>
             <td><%= inv.getInvoiceId() %></td>
