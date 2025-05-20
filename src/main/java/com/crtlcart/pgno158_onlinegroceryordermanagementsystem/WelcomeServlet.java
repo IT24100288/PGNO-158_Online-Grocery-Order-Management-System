@@ -18,6 +18,8 @@ public class WelcomeServlet extends HttpServlet {
         // Create session if not exists (change from false to true)
         HttpSession session = request.getSession(true);
 
+        f
+
         // Dummy check (in real app, you'd validate user)
         if (session.getAttribute("username") == null) {
             session.setAttribute("username", "DemoUser");
