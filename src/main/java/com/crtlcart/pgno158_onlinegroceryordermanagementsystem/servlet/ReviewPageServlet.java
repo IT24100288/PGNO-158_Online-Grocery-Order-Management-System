@@ -16,17 +16,11 @@ public class ReviewPageServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public void init() throws ServletException {
-        super.init();
-        FileManager.init(getServletContext());
-    }
-
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Load products and reviews
-            List<Product> products = FileManager.readProducts();
-            List<Review> reviews = FileManager.readReviews();
+            List<Product> products = FileManager.getInstance().readProducts();
+            List<Review> reviews = FileManager.getInstance().readReviews();
 
             // Get message from session if exists
             String message = (String) request.getSession().getAttribute("message");

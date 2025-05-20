@@ -15,12 +15,6 @@ public class SubmitReviewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public void init() throws ServletException {
-        super.init();
-        FileManager.init(getServletContext());
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Get parameters from the form
@@ -28,13 +22,6 @@ public class SubmitReviewServlet extends HttpServlet {
             String userName = request.getParameter("userName");
             String reviewText = request.getParameter("reviewText");
             String ratingStr = request.getParameter("rating");
-
-            // Debug logging
-            System.out.println("Received review submission:");
-            System.out.println("Product Name: " + productName);
-            System.out.println("User Name: " + userName);
-            System.out.println("Review Text: " + reviewText);
-            System.out.println("Rating: " + ratingStr);
 
             // Validate input
             if (productName == null || productName.trim().isEmpty()) {
@@ -56,36 +43,26 @@ public class SubmitReviewServlet extends HttpServlet {
             }
 
             // Read current reviews
-            List<Review> reviews = FileManager.readReviews();
-            System.out.println("Current number of reviews: " + reviews.size());
+            List<Review> reviews = FileManager.getInstance().readReviews();
 
             // Generate new review ID
             int newId = reviews.isEmpty() ? 1 : reviews.get(reviews.size() - 1).getId() + 1;
 
             // Create new review
             Review newReview = new Review(newId, 0, productName.trim(), userName.trim(), reviewText.trim(), rating);
-            System.out.println("Created new review with ID: " + newId);
-
-            // Add to list and save
             reviews.add(newReview);
-            FileManager.writeReviews(reviews);
-            System.out.println("Successfully saved review");
+            FileManager.getInstance().writeReviews(reviews);
 
-            // Set success message
+            // Set success message and redirect
             request.getSession().setAttribute("message", "Review submitted successfully!");
-
-            // Redirect back to index page
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
-        } catch (NumberFormatException e) {
-            System.err.println("Invalid number format: " + e.getMessage());
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid input: " + e.getMessage());
+            response.sendRedirect(request.getContextPath() + "/");
         } catch (IllegalArgumentException e) {
-            System.err.println("Invalid argument: " + e.getMessage());
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
+            request.getSession().setAttribute("error", e.getMessage());
+            response.sendRedirect(request.getContextPath() + "/");
         } catch (Exception e) {
-            System.err.println("Error submitting review: " + e.getMessage());
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error submitting review: " + e.getMessage());
+            request.getSession().setAttribute("error", "An unexpected error occurred. Please try again.");
+            response.sendRedirect(request.getContextPath() + "/");
         }
     }
 }

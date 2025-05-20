@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>ctrlcart</artifactId>
+    <groupId>com.crtlcart</groupId>
+    <artifactId>pgno158_onlinegroceryordermanagementsystem</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -14,15 +14,15 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
+        <maven.compiler.source>23</maven.compiler.source>
+        <maven.compiler.target>23</maven.compiler.target>
         <jakarta.servlet.version>6.0.0</jakarta.servlet.version>
         <jakarta.jsp.version>3.1.1</jakarta.jsp.version>
         <jakarta.jstl.version>3.0.0</jakarta.jstl.version>
     </properties>
 
     <dependencies>
-        <!-- Jakarta EE 10 API -->
+        <!-- Jakarta EE Web API -->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-web-api</artifactId>
@@ -63,7 +63,7 @@
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-            <version>${jakarta.jstl.version}</version>
+            <version>3.0.1</version>
         </dependency>
 
         <!-- Tomcat Jasper (JSP Engine) -->
@@ -78,19 +78,20 @@
     <build>
         <finalName>ctrlcart</finalName>
         <plugins>
-            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <source>22</source>
-                    <target>22</target>
-                    <release>22</release>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <release>23</release>
+                    <compilerArgs>
+                        <arg>--enable-preview</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
 
-            <!-- Maven WAR Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -111,7 +112,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Maven JSPC Plugin -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -120,6 +120,9 @@
                     <path>/</path>
                     <port>8080</port>
                     <uriEncoding>UTF-8</uriEncoding>
+                    <systemProperties>
+                        <java.util.logging.config.file>${project.basedir}/src/main/resources/logging.properties</java.util.logging.config.file>
+                    </systemProperties>
                 </configuration>
             </plugin>
         </plugins>

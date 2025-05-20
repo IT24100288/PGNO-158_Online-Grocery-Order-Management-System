@@ -8,7 +8,7 @@ import jakarta.servlet.annotation.WebListener;
 public class FileManagerInitializer implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        FileManager.init(sce.getServletContext());
+        FileManager.getInstance().setServletContext(sce.getServletContext());
     }
 
     @Override

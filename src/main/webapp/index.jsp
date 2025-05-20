@@ -267,9 +267,20 @@
     <div class="container">
         <div class="main-card mt-5">
             <div class="main-header">Feedback and Review Management</div>
-            <% String message = (String) session.getAttribute("message"); if (message != null) { %>
+            <% 
+            String message = (String) session.getAttribute("message"); 
+            String error = (String) session.getAttribute("error");
+            if (message != null) { 
+            %>
                 <div class="alert alert-purple mt-4"> <%= message %> </div>
-                <% session.removeAttribute("message"); } %>
+                <% session.removeAttribute("message"); 
+            } 
+            if (error != null) { 
+            %>
+                <div class="alert alert-danger mt-4"> <%= error %> </div>
+                <% session.removeAttribute("error"); 
+            } 
+            %>
             <form id="reviewForm" action="submitReview" method="post" class="mb-4">
                 <div class="mb-3">
                     <label for="productName" class="form-label">Product Name</label>
@@ -315,10 +326,11 @@
                     </thead>
                     <tbody>
                         <%
-                        List<Review> reviews = FileManager.readReviews();
+                        List<Review> reviews = FileManager.getInstance().readReviews();
                         int i = 1;
                         for(Review review : reviews) {
-                            String[] dateTime = review.getSubmissionDate().split(" ");
+                            String formattedDate = review.getFormattedSubmissionDate();
+                            String[] dateTime = formattedDate.split(" ");
                             String date = dateTime.length > 0 ? dateTime[0] : "";
                             String time = dateTime.length > 1 ? dateTime[1] : "";
                         %>
@@ -339,8 +351,13 @@
                             <td><span class="date-time"><%= date %></span></td>
                             <td><span class="date-time"><%= time %></span></td>
                             <td class="action-buttons">
-                                <a href="editReview?id=<%= review.getId() %>" class="btn btn-primary action-btn"><i class="fas fa-edit"></i> Edit</a>
-                                <a href="deleteReview?id=<%= review.getId() %>" class="btn btn-danger action-btn"><i class="fas fa-trash"></i> Delete</a>
+                                <a href="${pageContext.request.contextPath}/editReview?id=<%= review.getId() %>" class="btn btn-primary action-btn"><i class="fas fa-edit"></i> Edit</a>
+                                <form action="${pageContext.request.contextPath}/deleteReview" method="post" style="display: inline;">
+                                    <input type="hidden" name="id" value="<%= review.getId() %>">
+                                    <button type="submit" class="btn btn-danger action-btn" onclick="return confirm('Are you sure you want to delete this review?')">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         <% } %>

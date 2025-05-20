@@ -2,6 +2,7 @@ package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
 
 import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Product;
 import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Review;
+import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.ReviewStatus;
 import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.utils.FileManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,18 +17,12 @@ public class ModerateReviewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public void init() throws ServletException {
-        super.init();
-        FileManager.init(getServletContext());
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int reviewId = Integer.parseInt(request.getParameter("id"));
             String action = request.getParameter("action");
             
-            List<Review> reviews = FileManager.readReviews();
+            List<Review> reviews = FileManager.getInstance().readReviews();
             Review reviewToModerate = reviews.stream()
                     .filter(r -> r.getId() == reviewId)
                     .findFirst()
@@ -35,12 +30,12 @@ public class ModerateReviewServlet extends HttpServlet {
 
             if (reviewToModerate != null) {
                 if ("approve".equals(action)) {
-                    reviewToModerate.setStatus("APPROVED");
+                    reviewToModerate.setStatus(ReviewStatus.APPROVED);
                 } else if ("reject".equals(action)) {
-                    reviewToModerate.setStatus("REJECTED");
+                    reviewToModerate.setStatus(ReviewStatus.REJECTED);
                 }
                 
-                FileManager.writeReviews(reviews);
+                FileManager.getInstance().writeReviews(reviews);
                 request.getSession().setAttribute("message", "Review has been " + action + "d successfully");
             } else {
                 request.getSession().setAttribute("message", "Review not found");

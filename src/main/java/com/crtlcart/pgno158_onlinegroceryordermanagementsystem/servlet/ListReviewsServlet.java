@@ -11,15 +11,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/listReviews")
+@WebServlet("/list-reviews")
 public class ListReviewsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Read reviews and products using FileManager
-        List<Review> reviews = FileManager.readReviews();
-        List<Product> products = FileManager.readProducts();
+        List<Review> reviews = FileManager.getInstance().readReviews();
+        List<Product> products = FileManager.getInstance().readProducts();
 
         // Set attributes for JSP
         request.setAttribute("reviews", reviews);
