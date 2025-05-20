@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
-         version="6.0">
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+    <servlet>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <servlet-class>com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet.AdminLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <url-pattern>/adminLogin</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ManageUsersServlet</servlet-name>
+        <servlet-class>com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet.ManageUsersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageUsersServlet</servlet-name>
+        <url-pattern>/manageUsers</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ManageProductsServlet</servlet-name>
+        <servlet-class>com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet.ManageProductsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageProductsServlet</servlet-name>
+        <url-pattern>/manageProducts</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ManageOrdersServlet</servlet-name>
+        <servlet-class>com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet.ManageOrdersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageOrdersServlet</servlet-name>
+        <url-pattern>/manageOrders</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>adminLogin.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
