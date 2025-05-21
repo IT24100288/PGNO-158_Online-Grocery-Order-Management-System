@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class OrderService {
 
-    private static final String filePath = "C:\\Users\\USER\\Desktop\\order-management\\data\\order.txt";
+    private static final String filePath = "C:\\Users/USER\\Desktop\\order-management\\data\\order.txt";
 
     //create new order
     public void createOrder(double totalPrice, ArrayList<Cart> cartItems, String customerEmail, String customerFirstname, String customerLastName, String customerPhone, String customerAddress, String customerCity, String customerPostalCode) {

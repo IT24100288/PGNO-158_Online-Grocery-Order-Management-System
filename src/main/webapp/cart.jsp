@@ -81,7 +81,7 @@
                         %>
                             <div class="cart-empty-msg">
                                 <div>You don't have any items in your cart.</div>
-                                <div><a href="catalog?name=bread"><button>Shop Now</button></a></div>
+                                <div><a href="catalog?name=snacks"><button>Shop Now</button></a></div>
                             </div>
                         <%
                             }

@@ -24,10 +24,10 @@
         <p class="bakery-logo"><a class="bakery-logo-a" href="index.jsp">Ctrl+Cart</a></p>
         <div class="nav-content">
             <div class="nav-items">
-                <a href="catalog?name=bread">Bread</a>
+                <a href="catalog?name=snacks">Snacks</a>
             </div>
             <div class="nav-items">
-                <a href="catalog?name=pastry">Pastry</a>
+                <a href="catalog?name=beverages">Beverages</a>
             </div>
             <div class="nav-items">
                 <a href="cart.jsp" class="cart-icon">
