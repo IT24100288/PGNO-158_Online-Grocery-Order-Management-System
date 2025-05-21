@@ -132,8 +132,8 @@
         </div>
         <div class="footer-sec-2">
             <div class="sec-2-text">
-                <p><a href="catalog?name=bread">Bread</a></p>
-                <p><a href="catalog?name=pastry">Pastry</a></p>
+                <p><a href="catalog?name=bread">Snacks</a></p>
+                <p><a href="catalog?name=pastry">Bekary</a></p>
                 <p><a href="catalog?name=beverages">Beverage</a></p>
             </div>
             <div class="sec-2-icons">
