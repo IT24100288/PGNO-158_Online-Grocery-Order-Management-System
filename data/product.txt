@@ -16,4 +16,5 @@ P0015,Pringles (Cheese),1080.0,Light crunchy and perfectly seasoned these classi
 P0016,Doritos,520.0,Light crunchy and perfectly seasoned these classic potato chips make a delicious snack anytime.,snacks,assets/images/doritos.png
 P0017,Cheese Pizza,3400.0,A soft and fresh staple food perfect for sandwiches toast or enjoying with butter ideal for breakfast lunch or dinner every day.,bakery,assets/images/pizza.jpg
 P0018,Hotdog,580.0,A soft and fresh staple food perfect for sandwiches toast or enjoying with butter ideal for breakfast lunch or dinner every day.,bakery,assets/images/hotdog.jpg
-P0012,Nescafe,600.0,A fizzy refreshing soft drink with a signature taste that energizes your day and adds joy to every moment from casual hangouts to special occasions.,beverages,assets/images/nescafe.jpg
+P0019,Nescafe,600.0,A fizzy refreshing soft drink with a signature taste that energizes your day and adds joy to every moment from casual hangouts to special occasions.,beverages,assets/images/nescafe.jpg
+P0020,Kitkat Ice-Cream,430.0,Convenient and ready-to-cook meals or ingredients kept frozen to preserve freshness and flavor perfect for quick and easy cooking anytime.,frozen,assets/images/kitkat.jpg
