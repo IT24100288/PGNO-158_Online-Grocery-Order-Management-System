@@ -12,6 +12,8 @@ P0011,Veggie Pasta,390.0,Convenient and ready-to-cook meals or ingredients kept 
 P0012,Tea,200.0,A fizzy refreshing soft drink with a signature taste that energizes your day and adds joy to every moment from casual hangouts to special occasions.,beverages,assets/images/tea.jpg
 P0013,Ceylon Tea,230.0,A fizzy refreshing soft drink with a signature taste that energizes your day and adds joy to every moment from casual hangouts to special occasions.,beverages,assets/images/tea2.jpg
 P0014,Pringles (Original),1000.0,Light crunchy and perfectly seasoned these classic potato chips make a delicious snack anytime.,snacks,assets/images/poriginal.jpg
-P0015,Pringles (Chees),1080.0,Light crunchy and perfectly seasoned these classic potato chips make a delicious snack anytime.,snacks,assets/images/pchees.jpg
-P0003,Cheese Pizza,3400.0,A soft and fresh staple food perfect for sandwiches toast or enjoying with butter ideal for breakfast lunch or dinner every day.,bakery,assets/images/pizza.jpg
-P0003,Hotdog,580.0,A soft and fresh staple food perfect for sandwiches toast or enjoying with butter ideal for breakfast lunch or dinner every day.,bakery,assets/images/hotdog.jpg
+P0015,Pringles (Cheese),1080.0,Light crunchy and perfectly seasoned these classic potato chips make a delicious snack anytime.,snacks,assets/images/pchees.jpg
+P0016,Doritos,520.0,Light crunchy and perfectly seasoned these classic potato chips make a delicious snack anytime.,snacks,assets/images/doritos.png
+P0017,Cheese Pizza,3400.0,A soft and fresh staple food perfect for sandwiches toast or enjoying with butter ideal for breakfast lunch or dinner every day.,bakery,assets/images/pizza.jpg
+P0018,Hotdog,580.0,A soft and fresh staple food perfect for sandwiches toast or enjoying with butter ideal for breakfast lunch or dinner every day.,bakery,assets/images/hotdog.jpg
+P0012,Nescafe,600.0,A fizzy refreshing soft drink with a signature taste that energizes your day and adds joy to every moment from casual hangouts to special occasions.,beverages,assets/images/nescafe.jpg
