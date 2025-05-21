@@ -111,7 +111,7 @@
     </div>
     <div class="product">
         <a href="catalog?name=frozen">
-            <img src="assets/images/corn.jpg" alt="Frozen Foods">
+            <img src="assets/images/kitkat.jpg" alt="Frozen Foods">
             <div style="text-align: center;">Frozen Foods</div>
         </a>
     </div>
