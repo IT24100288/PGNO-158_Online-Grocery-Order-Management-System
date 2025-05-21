@@ -25,13 +25,7 @@ public class Review extends BaseEntity implements Serializable {
         this.submissionDate = LocalDateTime.now();
     }
 
-    public int getProductId() {
-        return productId;
-    }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
 
     public String getProductName() {
         return productName;
@@ -76,9 +70,7 @@ public class Review extends BaseEntity implements Serializable {
         this.status = status;
     }
 
-    public LocalDateTime getSubmissionDate() {
-        return submissionDate;
-    }
+
 
     public String getFormattedSubmissionDate() {
         return submissionDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
