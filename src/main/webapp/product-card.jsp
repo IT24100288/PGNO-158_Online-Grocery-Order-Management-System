@@ -68,7 +68,7 @@
     <footer>
         <div class="footer-container">
             <div class="footer-sec-1">
-                <p>Dreamy Delights</p>
+                <p>Ctrl+Cart</p>
             </div>
             <div class="footer-sec-2">
                 <div class="sec-2-text">
