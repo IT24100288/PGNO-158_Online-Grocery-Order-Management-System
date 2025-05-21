@@ -25,7 +25,7 @@
 %>
 <header class="header">
     <div class="nav-bar">
-        <p class="bakery-logo"><a class="bakery-logo-a" href="index.jsp">CTRL+CART</a></p>
+        <p class="grocery-logo"><a class="grocery-logo-a" href="index.jsp">CTRL+CART</a></p>
         <div class="nav-content">
             <div class="nav-items">
                 <a href="catalog?name=snacks">Snacks</a>
