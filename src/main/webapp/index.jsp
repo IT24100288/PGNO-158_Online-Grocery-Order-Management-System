@@ -68,14 +68,14 @@
     <div class="text">
         <h1>We Bring the Store to Your Door</h1>
         <p>Shop Smart, Live Healthy – Your Favorite Groceries Just a Click Away!</p>
-        <a href="catalog.jsp" style="background: red; color: white; padding: 10px 20px; border-radius: 5px; display: inline-block; margin-top: 30px;">Shop Now</a>
+        <a href="catalog?name=snacks" style="background: red; color: white; padding: 10px 20px; border-radius: 5px; display: inline-block; margin-top: 30px;">Shop Now</a>
     </div>
     <img src="assets/images/banner1.png" width="800" height="400" alt="Fresh Produce">
 </div>
 
 <!-- Action Buttons -->
 <div class="action-buttons">
-    <a href="catalog?name=bread"><button>Catalog</button></a>
+    <a href="catalog?name=snacks"><button>Catalog</button></a>
     <a href="cart.jsp"><button>Cart</button></a>
     <a href="orders"><button>Admin Orders</button></a>
 </div>
