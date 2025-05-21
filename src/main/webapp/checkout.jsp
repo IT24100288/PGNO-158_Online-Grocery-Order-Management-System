@@ -122,9 +122,9 @@
         </div>
         <div class="footer-sec-2">
             <div class="sec-2-text">
-                <p><a href="catalog?name=bread">Bread</a></p>
-                <p><a href="catalog?name=pastry">Pastry</a></p>
-                <p><a href="catalog?name=beverages">Beverage</a></p>
+                <p><a href="catalog?name=snacks">Snacks</a></p>
+                <p><a href="catalog?name=sweets">Sweets & Chocolates</a></p>
+                <p><a href="catalog?name=beverages">Beverages</a></p>
             </div>
             <div class="sec-2-icons">
                 <p><a href=""><i class="ri-facebook-circle-fill"></i></a></p>
