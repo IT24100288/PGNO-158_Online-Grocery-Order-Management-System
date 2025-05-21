@@ -1,0 +1,60 @@
+.header{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: flex;
+    z-index: 2;
+    align-items: center;
+    margin: auto;
+    height: 50px;
+    background-color: var(--header-color);
+}
+
+.nav-bar{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 93%;
+    font-weight:var(--main-semibold);
+    color: var(--primary-color);
+    font-size: var(--font-size-xsm);
+    align-items: center;
+
+}
+.nav-content a:visited,
+.nav-content a{
+    color: var(--primary-color);
+}
+.bakery-logo{
+    font-family: var(--second-font), serif;
+    font-size: var(--font-size-sm);
+}
+.nav-content{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.grocery-logo-a,
+.grocery-logo-a:visited{
+    color: var(--button-color);
+}
+.cart-icon{
+    position: relative;
+    display: inline-block;
+}
+.cart-item-display{
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    padding-top: 1px;
+    background: var(--button-outline);
+    color: #fff;
+    font-size: 13px;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    text-align: center;
+}
+

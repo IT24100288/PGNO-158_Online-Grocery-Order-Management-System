@@ -1,0 +1,232 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  color: var(--font-color-dark);
+  font-size: var(--font-size-xxsm);
+}
+
+/* Main Content Styles */
+.main-content {
+  margin-left: 200px;
+  flex: 1;
+  padding: 35px 20px;
+  transition: margin-left 0.3s;
+}
+
+.header-title{
+  font-size: var(--font-size-md);
+  font-weight: var(--main-semibold);
+  margin-bottom: 20px;
+}
+
+.main-content .breadcrumb {
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.main-content .breadcrumb a {
+  color: var(--button-outline);
+  text-decoration: none;
+}
+
+/* Details Section */
+.details {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.details .section {
+  margin-bottom: 20px;
+}
+
+.details .section h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.details .section p strong {
+  margin-bottom: 5px;
+  color: var(--font-color-dark);
+    font-weight: var(--main-semibold);
+}
+
+.details .section .actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.details .section .actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.details .section .actions .contact {
+  background-color: #ffebee;
+  border-radius: 5px;
+  color: #c62828;
+}
+
+.details .section .actions .view-orders {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  color: #333;
+}
+
+/* Order History Table */
+.details .section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.details .section table th, .details .section table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.details .section table th {
+  font-weight: normal;
+  color: #888;
+}
+
+.details .section table td {
+  color: #333;
+}
+
+.details .section table .status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.details .section .actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.details .section .actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.details .section .actions select {
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: var(--font-color-dark);
+}
+
+.details .section .actions button {
+  color: green;
+  background-color: rgb(185, 243, 185);
+}
+
+.details .section .actions .contact {
+  background-color: #ffebee;
+  border-radius: 5px;
+  color: #c62828;
+}
+
+
+.details .section table .status.completed {
+  background-color: #e6f4ea;
+  color: #28a745;
+}
+
+.details .section table .status.processing {
+  background-color: #e6f0fa;
+  color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+      width: 60px;
+  }
+
+  .main-content {
+      margin-left: 60px;
+  }
+
+  .header input {
+      width: 200px;
+  }
+
+  .details .section p {
+      font-size: 12px;
+  }
+
+  .details .section table th, .details .section table td {
+      font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px;
+      border-right: none;
+      border-bottom: 1px solid #e0e0e0;
+  }
+
+  .sidebar .logo {
+      margin: 0;
+  }
+
+  .sidebar ul {
+      display: flex;
+      gap: 20px;
+  }
+
+  .sidebar ul li {
+      margin: 0;
+  }
+
+  .sidebar .logout {
+      position: static;
+  }
+
+  .main-content {
+      margin-left: 0;
+      padding: 10px;
+  }
+
+  .header {
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  .header input {
+      width: 100%;
+  }
+
+  .details .section .actions {
+      flex-direction: column;
+  }
+
+  .details .section .actions button {
+      width: 100%;
+  }
+
+  .details .section table th, .details .section table td {
+      padding: 5px;
+  }
+
+  .details .section table th:nth-child(2), .details .section table td:nth-child(2),
+  .details .section table th:nth-child(3), .details .section table td:nth-child(3) {
+      display: none; /* Hide Items and Date columns on small screens */
+  }
+}

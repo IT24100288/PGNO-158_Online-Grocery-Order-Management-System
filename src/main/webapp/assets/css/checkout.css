@@ -1,0 +1,137 @@
+main{
+    margin: 90px 25px 0 25px;
+    color: var(--primary-color);
+
+}
+.main-title{
+    font-size: var(--font-size-mmd);
+    font-weight: var(--main-semibold);
+    color: var(--font-color-dark);
+}
+.main-container{
+    display: flex;
+    gap: 25px;
+    margin-top: 25px;
+}
+.client-details-section{
+    max-width: 55%;
+    flex: 1;
+}
+.form-area{
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-xxsm);
+    max-width: 600px;
+}
+.form-title-1,
+.form-title-2{
+    font-size: var(--font-size-sm);
+    font-weight: var(--main-medium);
+    margin-bottom: 15px;
+    color: var(--font-color-dark);
+}
+.form-sec-1,
+.form-sec-2,
+.form-sec-4{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+.form-area input{
+    height: 40px;
+    min-width: 290px;
+    border-radius: 30px;
+    border: 2px solid var(--primary-color);
+    padding: 0 10px;
+    font-size: 1rem;
+    margin-top: 5px;
+    color: var(--font-color-dark);
+    background-color: var(--background-color);
+}
+.form-area .form-sec-3 input{
+    width: 100%;
+}
+.form-title-2{
+   margin-top: 20px;
+}
+.form-sec-1,
+.form-sec-2,
+.form-sec-3,
+.form-sec-4{
+    margin-top: 10px;
+}
+.form-submit-btn button{
+    margin: 30px 0;
+    width: 200px;
+    height: 40px;
+    font-size: var(--font-size-xxsm);
+    font-weight: var(--main-medium);
+    border-radius: 30px;
+    background-color: var(--button-outline);
+    color: #fff;
+}
+.form-area label{
+    font-size: 1rem;
+}
+
+.order-details-section{
+    max-width: 45%;
+    flex: 1;
+}
+
+.order-details-card{
+    width: 310px;
+    background-color:#fdf6ef;
+    justify-self: center;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px 20px;
+    font-size: 1rem;
+    font-weight: var(--main-medium);
+}
+
+.order-title{
+    font-size: 1.5rem;
+    font-weight: var(--main-bold);
+    margin-bottom: 25px;
+}
+.order-details{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-content: space-between;
+    line-height: 1.6;
+}
+.order-details div:first-child{
+    text-transform: capitalize;
+}
+.order-details div:nth-child(3){
+    justify-self: flex-end;
+}
+.order-details div:nth-child(2){
+    justify-self: center;
+}
+.delivery-charge,.total-cost{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+.delivery-charge div:nth-child(2),
+.total-cost div:nth-child(2){
+    justify-self: flex-end;
+}
+.horizontal-line{
+    width: 100%;
+    height: 1px;
+    margin: 22px 0;
+    border-radius: 50%;
+    opacity: 0.5;
+    background-color: var(--primary-color);
+}
+.total-cost{
+    margin-top: 30px;
+    font-size: var(--font-size-xsm);
+    font-weight: var(--main-semibold);
+    margin-bottom: 20px;
+}

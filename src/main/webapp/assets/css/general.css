@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Glory:ital,wght@0,100..800;1,100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    display : flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    font-family: var(--main-font), serif;
+}
+main{
+    flex: 1;
+}
+img {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,ol{
+    list-style: none;
+}
+button{
+    border-style: none;
+    font-family: var(--main-font), serif;
+    cursor: pointer;
+}
+
+input{
+    font-family: var(--main-font), serif;
+}
+
+:root {
+    /*colors*/
+    --background-color: #f8f8f8;
+    --font-color: #000;
+    --primary-color: #2c2c2c;
+    --font-color-dark: #4e4e4e;
+    --second-color-1: #d9a77c;
+    --second-color-2: #ffbbbb;
+    --second-color-3: #cc976d;
+    --button-color: #a30000;
+    --button-outline: #4a4a4a;
+    --header-color: #e10000;
+    --img-background-color: #ffffff;
+    --button-hover-color: #ff0000;
+    --catalog-button-color: #ffffff;
+    --star-color: #fbbf24;
+
+    /*typo*/
+    --main-font: "Glory", sans-serif;
+    --main-regular: 400;
+    --main-medium: 500;
+    --main-semibold: 600;
+    --main-bold: 700;
+    --second-font: "Lobster", sans-serif;
+    --second-regular: 400;
+    --font-size-xxsm: 1.1rem;
+    --font-size-xsm: 1.2rem;
+    --font-size-sm: 1.6rem;
+    --font-size-md: 2.4rem;
+    --font-size-mmd:3.1rem;
+    --font-size-lg: 4.0rem;
+    --font-size-xl: 6.0rem;
+}

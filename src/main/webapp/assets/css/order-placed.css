@@ -1,0 +1,44 @@
+main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--font-color-dark);
+}
+.image img{
+    width: 180px;
+    height: 180px;
+}
+.text{
+    text-align: center;
+    font-weight: var(--main-semibold);
+    margin-top: 10px;
+}
+.main-text{
+    font-size: var(--font-size-md);
+}
+.sub-text{
+    font-size: var(--font-size-sm);
+    font-weight: var(--main-medium);
+    margin-top: 5px;
+}
+.buttons{
+    display: flex;
+    margin-top: 25px;
+    gap: 10px;
+}
+.buttons button {
+    width: 170px;
+    height: 40px;
+    border-radius: 30px;
+    font-size: var(--font-size-xxsm);
+    font-weight: var(--main-medium);
+}
+.order-btn button{
+    border: 2px solid var(--button-outline);
+    background-color: transparent;
+}
+.catalog-btn button{
+    background-color: var(--button-outline);
+    color: #fff;
+}

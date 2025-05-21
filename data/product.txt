@@ -1,0 +1,17 @@
+P0001,Classic Potato Chips,200.0,Classic Potato Chips – Light crunchy and perfectly seasoned these classic potato chips make a delicious snack anytime.,snacks,assets/images/classic.jpg
+P0002,CocaCola,350.0,A fizzy refreshing soft drink with a signature taste that energizes your day and adds joy to every moment from casual hangouts to special occasions.,beverages,assets/images/cola.png
+P0003,Bread,150.0,A soft and fresh staple food perfect for sandwiches toast or enjoying with butter ideal for breakfast lunch or dinner every day.,bakery,assets/images/bread.jpg
+P0004,Dairy Milk,300.0, A delicious sweet made from cocoa that melts smoothly and offers rich flavors perfect for snacking baking or gifting.,sweets,assets/images/choc1.jpg
+P0005,Sweet Corn,400.0,Convenient and ready-to-cook meals or ingredients kept frozen to preserve freshness and flavor perfect for quick and easy cooking anytime.,frozen,assets/images/corn.jpg
+P0006,Chocolate Cupcake,100.0, A delicious sweet made from cocoa that melts smoothly and offers rich flavors perfect for snacking baking or gifting.,sweets,assets/images/choc2.jpg
+P0007,Nutella,1500.0, A delicious sweet made from cocoa that melts smoothly and offers rich flavors perfect for snacking baking or gifting.,sweets,assets/images/nutella.jpg
+P0008,PopCorners Chips,250.0,Light crunchy and perfectly seasoned these classic potato chips make a delicious snack anytime.,snacks,assets/images/pop.jpg
+P0009,Pepsi,350.0,A fizzy refreshing soft drink with a signature taste that energizes your day and adds joy to every moment from casual hangouts to special occasions.,beverages,assets/images/pepsi.jpg
+P0010,Tomato Sauce,430.0, A rich flavorful addition that enhances the taste of meals perfect for dipping cooking or seasoning your favorite dishes.,sauce,assets/images/sauce.jpg
+P0011,Veggie Pasta,390.0,Convenient and ready-to-cook meals or ingredients kept frozen to preserve freshness and flavor perfect for quick and easy cooking anytime.,frozen,assets/images/pasta.jpg
+P0012,Tea,200.0,A fizzy refreshing soft drink with a signature taste that energizes your day and adds joy to every moment from casual hangouts to special occasions.,beverages,assets/images/tea.jpg
+P0013,Ceylon Tea,230.0,A fizzy refreshing soft drink with a signature taste that energizes your day and adds joy to every moment from casual hangouts to special occasions.,beverages,assets/images/tea2.jpg
+P0014,Pringles (Original),1000.0,Light crunchy and perfectly seasoned these classic potato chips make a delicious snack anytime.,snacks,assets/images/poriginal.jpg
+P0015,Pringles (Chees),1080.0,Light crunchy and perfectly seasoned these classic potato chips make a delicious snack anytime.,snacks,assets/images/pchees.jpg
+P0003,Cheese Pizza,3400.0,A soft and fresh staple food perfect for sandwiches toast or enjoying with butter ideal for breakfast lunch or dinner every day.,bakery,assets/images/pizza.jpg
+P0003,Hotdog,580.0,A soft and fresh staple food perfect for sandwiches toast or enjoying with butter ideal for breakfast lunch or dinner every day.,bakery,assets/images/hotdog.jpg

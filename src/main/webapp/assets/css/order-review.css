@@ -1,0 +1,132 @@
+main{
+    margin: 90px 25px 0 25px;
+    color: var(--primary-color);
+
+}
+.main-title{
+    font-size: var(--font-size-mmd);
+    font-weight: var(--main-semibold);
+    color: var(--font-color-dark);
+}
+.main-container{
+    display: flex;
+    gap: 25px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.client-details-section{
+    max-width: 55%;
+    flex: 1;
+}
+.form-area{
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    max-width: 600px;
+    font-weight: var(--main-medium);
+}
+.form-title-1,
+.form-title-2{
+    font-size: var(--font-size-sm);
+    font-weight: var(--main-medium);
+    margin-bottom: 20px;
+    color: var(--font-color-dark);
+}
+.form-title-2{
+    margin-top: 20px;
+}
+
+.order-details-section{
+    max-width: 45%;
+    flex: 1;
+}
+.form-area div:nth-child(6){
+    margin-bottom: 10px;
+}
+.form-area div:nth-child(7),
+.form-area div:nth-child(8),
+.form-area div:nth-child(9),
+.form-area div:nth-child(2),
+.form-area div:nth-child(3),
+.form-area div:nth-child(4)
+{
+    margin-bottom: 5px;
+}
+
+.order-details-card{
+    width: 310px;
+    background-color:#fdf6ef;
+    justify-self: center;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px 20px;
+    font-size: 1rem;
+    font-weight: var(--main-medium);
+}
+
+.order-title{
+    font-size: 1.5rem;
+    font-weight: var(--main-bold);
+    margin-bottom: 25px;
+}
+.order-details{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-content: space-between;
+    line-height: 1.6;
+}
+.order-details div:first-child{
+    text-transform: capitalize;
+}
+.order-details div:nth-child(3){
+    justify-self: flex-end;
+}
+.order-details div:nth-child(2){
+    justify-self: center;
+}
+.delivery-charge,.total-cost{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+.delivery-charge div:nth-child(2),
+.total-cost div:nth-child(2){
+    justify-self: flex-end;
+}
+.horizontal-line{
+    width: 100%;
+    height: 1px;
+    margin: 22px 0;
+    border-radius: 50%;
+    opacity: 0.5;
+    background-color: var(--primary-color);
+}
+.total-cost{
+    margin-top: 30px;
+    font-size: var(--font-size-xsm);
+    font-weight: var(--main-semibold);
+    margin-bottom: 20px;
+}
+.place-order-btn{
+    align-self: center;
+    margin-top: 10px;
+}
+.place-order-btn div{
+    margin: 10px 0;
+}
+.place-order-btn button{
+    width: 200px;
+    height: 40px;
+    border-radius: 30px;
+    font-weight: var(--main-medium);
+    font-size: var(--font-size-xxsm);
+    background-color: var(--button-outline);
+    color: #fff;
+}
+.place-order-btn div:nth-child(2) button{
+    background-color: transparent;
+    color: #000;
+    margin-top: 5px;
+    border: 2px solid var(--button-outline);
+}
