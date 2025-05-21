@@ -25,14 +25,14 @@ body {
 
 .navbar a {
     text-decoration: none;
-    color: white; /* white text by default */
+    color: white;
     margin: 0 15px;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .navbar a:hover {
-    color: yellow; /* changes to yellow on hover */
+    color: yellow;
 }
 
 .hero {

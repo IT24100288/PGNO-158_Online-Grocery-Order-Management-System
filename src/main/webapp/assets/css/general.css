@@ -62,12 +62,12 @@ input{
     --star-color: #fbbf24;
 
     /*typo*/
-    --main-font: "Glory", sans-serif;
+    --main-font: "Segoe UI", sans-serif;
     --main-regular: 400;
     --main-medium: 500;
     --main-semibold: 600;
     --main-bold: 700;
-    --second-font: "Lobster", sans-serif;
+    --second-font: "Segoe UI", sans-serif;
     --second-regular: 400;
     --font-size-xxsm: 1.1rem;
     --font-size-xsm: 1.2rem;
