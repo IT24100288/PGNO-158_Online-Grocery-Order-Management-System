@@ -2,31 +2,39 @@ package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
 
 import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Invoice;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 @WebServlet("/invoice")
 public class InvoiceServlet extends HttpServlet {
-    private static final String FILE_PATH = "C:\\Users\\Gaveesha\\IdeaProjects\\newtest\\data\\invoices.txt"; // Update path as needed
+    private static final String FILE_PATH = "C:\\Users\\Gaveesha\\OneDrive - Sri Lanka Institute of Information Technology\\Documents\\OOP Project\\PGNO-158_Online-Grocery-Order-Management-System\\data\\invoices.txt"; // Update path as needed
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     private Stack<Invoice> loadInvoices() throws IOException {
         Stack<Invoice> stack = new Stack<>();
         File file = new File(FILE_PATH);
-        if (!file.exists()) file.createNewFile();
-
+        System.out.println(FILE_PATH);
+        System.out.println(file);
+        if (!file.exists()){
+            file.getParentFile().mkdir();
+            file.createNewFile();
+        }
+        System.out.println("reading file: " + file.getAbsolutePath());
+        System.out.println("file exists?: " + file.exists());
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split("\\|");
-            if (parts.length == 4) {
+            if (parts.length != 4) {
+                System.out.println("skipping malformed line:" + line);
+                continue;
+            }
+
+            try {
                 stack.push(new Invoice(
                         parts[0],
                         parts[1],
@@ -34,13 +42,25 @@ public class InvoiceServlet extends HttpServlet {
                         new Date(Long.parseLong(parts[3]))
                 ));
             }
+            catch (Exception e) {
+                System.out.println("error handling line" + line);
+                e.printStackTrace();
+            }
         }
         reader.close();
         return stack;
     }
 
     private void saveInvoices(Stack<Invoice> invoices) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, false));
+        File file = new File(FILE_PATH);
+
+        if(!file.exists()) {
+            file.getParentFile().mkdir();
+            file.createNewFile();
+        }
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
+        System.out.println("saving to" );
         for (Invoice inv : invoices) {
             writer.write(inv.getInvoiceId() + "|" +
                     inv.getCustomer() + "|" +
@@ -48,10 +68,11 @@ public class InvoiceServlet extends HttpServlet {
                     inv.getDate().getTime() + "\n");
         }
         writer.close();
+        System.out.println("file saved successfully");
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ServletException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Stack<Invoice> invoices = loadInvoices();
         req.setAttribute("invoices", invoices);
         req.getRequestDispatcher("/invoice.jsp").forward(req, resp);
@@ -65,7 +86,9 @@ public class InvoiceServlet extends HttpServlet {
         if ("add".equals(action)) {
             String id = "INV-" + System.currentTimeMillis();
             String customer = req.getParameter("customer");
+            System.out.println(customer);
             double amount = Double.parseDouble(req.getParameter("amount"));
+            System.out.println(amount);
             Date date = new Date();
 
             invoices.push(new Invoice(id, customer, amount, date));

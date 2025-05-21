@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <form action="conform.jsp" method="post">
+    <form action="${pageContext.request.contextPath}/processPayment" method="post">
         <input type="hidden" name="paymentMethod" id="paymentMethod" value="Credit Card">
         <input type="hidden" name="subtotal" value="21.03">
         <div class="mb-3">

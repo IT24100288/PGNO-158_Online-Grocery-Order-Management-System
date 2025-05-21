@@ -16,11 +16,21 @@ public class Item {
     }
 
     // Getters and setters...
-    public String getName() { return name; }
-    public double getPrice() { return price; }
-    public int getQuantity() { return quantity; }
-    public String getNote() { return note; }
-    public String getImgPath() { return imgPath; }
+    public String getName() {
+        return name;
+    }
+    public double getPrice() {
+        return price;
+    }
+    public int getQuantity() {
+        return quantity;
+    }
+    public String getNote() {
+        return note;
+    }
+    public String getImgPath() {
+        return imgPath;
+    }
 
     public double getTotal() {
         return price * quantity;

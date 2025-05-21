@@ -1,3 +1,4 @@
 Credit Card|Levi Ackerman|2564142108971244|02/2026|123|Dine In|140|21.03
 Debit Card|Eren Yeager|N/A|N/A|N/A|Take Away|N/A|15.50
 Cash|Mikasa Ackerman|N/A|N/A|N/A|Dine In|103|45.90
+2025-05-21 14:29:26 | Debit Card | gaveesha | 234 4777763 | 22/30 | Delivery | 58 | Subtotal: $21.03

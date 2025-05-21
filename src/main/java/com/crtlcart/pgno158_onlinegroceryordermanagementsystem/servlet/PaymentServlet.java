@@ -1,12 +1,8 @@
 package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -16,11 +12,11 @@ import java.util.Date;
 
 @WebServlet("/processPayment")
 public class PaymentServlet extends HttpServlet {
-    private static final String FILE_PATH = "C:/Users/Gaveesha/IdeaProjects/newtest/data/payments.txt"; // Update this path
+    private static final String FILE_PATH = "C:\\Users\\Gaveesha\\OneDrive - Sri Lanka Institute of Information Technology\\Documents\\OOP Project\\PGNO-158_Online-Grocery-Order-Management-System\\data\\payments.txt"; // Update this path
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ServletException {
+            throws ServletException, IOException {
 
         // 1. Read form data
         String paymentMethod = request.getParameter("paymentMethod"); // set via JavaScript if needed

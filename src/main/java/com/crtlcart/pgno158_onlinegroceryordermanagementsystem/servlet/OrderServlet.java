@@ -2,20 +2,16 @@ package com.crtlcart.pgno158_onlinegroceryordermanagementsystem.servlet;
 
 import com.crtlcart.pgno158_onlinegroceryordermanagementsystem.model.Item;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServletException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         List<Item> items = new ArrayList<>();
         items.add(new Item("Spicy seasoned seafood noodles", 2.29, 2, "Please, just a little bit spicy only.", "images/item1.jpg"));

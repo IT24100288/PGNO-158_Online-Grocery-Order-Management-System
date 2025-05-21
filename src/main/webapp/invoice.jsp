@@ -48,7 +48,7 @@
     </table>
 
     <button onclick="addInvoice()">Add Invoice</button>
-    <form method="post">
+    <form method="post" action="${pageContext.request.contextPath}/invoice">
         <input type="hidden" name="action" value="add" />
         <input type="text" name="customer" placeholder="Customer Name" required />
         <input type="number" step="0.01" name="amount" placeholder="Amount" required />
